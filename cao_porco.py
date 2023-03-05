@@ -12,26 +12,29 @@ cao1 = [0, 1, 1]
 cao2 = [1, 0, 1]
 cao3 = [1, 1, 1]
 
-dados = [porco1, porco2, porco3, cao1, cao2, cao3]
-classes = [1, 1, 1, 0, 0, 0]
+# x-> dados
+# y-> classes
+treino_x = [porco1, porco2, porco3, cao1, cao2, cao3]
+treino_y = [1, 1, 1, 0, 0, 0] # labels/etiquetas
 
 
 model = LinearSVC()
-model.fit(dados,classes)
+model.fit(treino_x,treino_y)
 
-animal = [1, 1, 1]
+animal1 = [1, 1, 1]
 animal2 = [1, 1, 0]
 animal3 = [0, 1, 1]
-testes = [animal, animal2, animal3]
+testes_x = [animal1, animal2, animal3]
+testes_y = [0, 1, 1]
 
-previsoes = model.predict(testes)
-testes_classes = [0, 1, 1]
 
-acertos = (previsoes==testes_classes).sum()
-total = len(testes)
+previsoes = model.predict(testes_x)
 
-print("taxa de acertos: ", acertos/total * 100)
+acertos = (previsoes==testes_y).sum()
+total = len(testes_x)
 
-print("acuraria: ", accuracy_score(testes_classes, previsoes) *100)
+print("taxa de acertos: %.2f" % (acertos/total * 100))
+
+print("acuraria: %.2f" % (accuracy_score(testes_y, previsoes) *100))
 
 
