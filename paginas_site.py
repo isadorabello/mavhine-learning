@@ -5,6 +5,17 @@ uri = "https://gist.githubusercontent.com/guilhermesilveira/2d2efa37d66b6c84a722
 dados = pd.read_csv(uri)
 
 # print(dados)
-print(dados.head())
+# print(dados.head())
 
-print(dados[["home", "how_it_works", "contact"]])
+mapa = {
+    "home":"inicio",
+    "how_it_works":"como_funciona",
+    "contact":"contato",
+    "bought":"comprou"
+}
+dados = dados.rename(columns=mapa)
+x = dados[["inicio", "como_funciona", "contato"]]
+y = dados["comprou"]
+
+# print(x.head())
+# print(y.head())
